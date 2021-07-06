@@ -41,6 +41,7 @@
   <div class="control-sidebar-bg"></div>
   
 </div>
+
 <!-- ./wrapper -->
   	
 	 
@@ -50,12 +51,41 @@
 	<script src="{{ asset('../assets/vendor_components/easypiechart/dist/jquery.easypiechart.js') }}"></script>
 	<script src="{{ asset('../assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
 	<script src="{{ asset('../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+
+	<script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
+	<script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
 	
+	<!-- Tags Input Script -->
+	<script src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
+
+<!-- CK Editor Scripts -->
+	<script src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+	<script src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+	<script src="{{ asset('backend/js/pages/editor.js') }}"></script>
+
 	<!-- Sunny Admin App -->
 	<script src="{{ asset('backend/js/template.js') }}"></script>
 	<script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
+
+
+
+<script>
+function alertFonksiyon() {
+  var txt;
+  if (confirm("Press a button!")) {
+    txt = "You pressed OK!";
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  document.getElementById("delete").innerHTML = txt;
+}
+</script> 
+
+@include('sweetalert::alert')
+
+
 	
-	@include('sweetalert::alert')
+	
 	
 	
 </body>
