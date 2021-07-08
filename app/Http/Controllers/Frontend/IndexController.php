@@ -26,8 +26,9 @@ class IndexController extends Controller
         $featured = Product::where('featured',1)->orderBy('id','DESC')->get();
         $hotdeals = Product::where('hot_deal',1)->orderBy('id','DESC')->get();
         $specialoffer = Product::where('special_offer',1)->orderBy('id','DESC')->limit(5)->get();
+        $specialdeals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(5)->get();
 
-        return view('frontend.index',compact('categories','sliders','products', 'featured','hotdeals','specialoffer'));   
+        return view('frontend.index',compact('categories','sliders','products', 'featured','hotdeals','specialoffer','specialdeals'));   
     }
 
     public function UserLogout()
@@ -107,8 +108,10 @@ public function ProductDetails($id,$slug){
 
 $product = Product::findOrFail($id);
 $multiImg = MultiImg::where('product_id',$id)->get();
+$hotdeals = Product::where('hot_deal',1)->orderBy('id','DESC')->get();
 
-return view('frontend.product.product_details', compact('product','multiImg'));
+
+return view('frontend.product.product_details', compact('product','multiImg','hotdeals'));
 
 }
 
