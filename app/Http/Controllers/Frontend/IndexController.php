@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Slider;
+use App\Models\Product;
+use App\Models\MultiImg;
 use Alert;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +18,16 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');   
+        $products = Product::where('status',1)->orderBy('id','DESC')->get();
+
+        $categories = Category::orderBy('category_name_tr','ASC')->get();
+        $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(5)->get();
+        
+        $featured = Product::where('featured',1)->orderBy('id','DESC')->get();
+        $hotdeals = Product::where('hot_deal',1)->orderBy('id','DESC')->get();
+        $specialoffer = Product::where('special_offer',1)->orderBy('id','DESC')->limit(5)->get();
+
+        return view('frontend.index',compact('categories','sliders','products', 'featured','hotdeals','specialoffer'));   
     }
 
     public function UserLogout()
@@ -88,5 +102,14 @@ class IndexController extends Controller
             return redirect()->back();
         }
     }
+
+public function ProductDetails($id,$slug){
+
+$product = Product::findOrFail($id);
+$multiImg = MultiImg::where('product_id',$id)->get();
+
+return view('frontend.product.product_details', compact('product','multiImg'));
+
+}
 
 }

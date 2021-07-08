@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Models\User;
 
 /*
@@ -108,7 +109,7 @@ Route::prefix('category')->group(function(){
 	Route::post('/sub/sub/update', [SubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
 
 	Route::get('/sub/sub/delete/{id}', [SubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
-});
+	});
 
 ///////////////// ADMIN PRODUCT ROUTES ALL  ///////////////////
 
@@ -137,10 +138,10 @@ Route::prefix('product')->group(function(){
 	Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
 
 
-});
+	});
 
 
-////////SLIDER ALL ROUTES ///////////////
+//////// ADMIN SLIDER ALL ROUTES ///////////////
 Route::prefix('slider')->group(function(){
 
 	Route::get('/view', [SliderController::class, 'SliderView'])->name('manage-slider');
@@ -157,7 +158,7 @@ Route::prefix('slider')->group(function(){
 
 	Route::get('/delete/{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
 
-});
+	});
 
 
 
@@ -194,6 +195,13 @@ Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdat
 ///////////////////////// END OF USER All ROUTES ///////////////////////////////////
 
 
+///////// FRONTEND ALL USER ROUTES /////////////////
+
+Route::get('/language/türkçe', [LanguageController::class, 'Turkce'])->name('turkce.language');
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+
+// Frontend product details Page URL
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 
 
